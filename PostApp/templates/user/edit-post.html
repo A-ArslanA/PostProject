@@ -1,0 +1,48 @@
+{% extends '../base.html' %}
+
+{% block title%}Edit Post{% endblock %}
+
+{% block content %}
+<style>
+    #id_title, #id_image {
+        display: block;
+        width: 30%;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+    }
+
+    #id_content {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #000;
+    }
+</style>
+    <div class="container">
+        <form method="post">
+            <h1 class="title mt-5 mb-5">Edit post</h1>
+            {% csrf_token %}
+            <label for="id_title">Title:</label>
+            <input value="{{ post.title }}" type="text" name="title" maxlength="255" required="" id="id_title">
+
+            {% if post.image %}
+            <label for="id_image">Image:</label>
+            <input value="{{ post.image }}" type="text" name="image" maxlength="500" id="id_image">
+            {% else %}
+            <label for="id_image">Image:</label>
+            <input type="text" name="image" maxlength="500" id="id_image">
+            {% endif %}
+
+            <label for="id_content">Content:</label>
+            <textarea name="content" cols="40" rows="10" required="" id="id_content">
+                {{ post.content }}
+            </textarea>
+
+            <button class="button is-dark mt-5">Edit</button>
+        </form>
+    </div>
+{% endblock %}

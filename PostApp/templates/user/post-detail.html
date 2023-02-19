@@ -1,0 +1,24 @@
+{% extends '../base.html' %}
+
+{% block title%}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <article class="message is-dark">
+            <div class="mt-5 message-body">
+                <h3 class="title mb-5 has-text-dark">{{ post.title }}</h3>
+                <h4 class="subtitle mb-5">{{ post.postDate }}</h4>
+                {% if post.image %}
+                <div style="width: 100%">
+                    <img src="{{ post.image }}" alt="{{ post.title }}">
+                </div>
+                {% else %}
+                <h2>None</h2>
+                {% endif %}
+                <p class="mb-3">{{ post.content }}</p>
+                <a href="{% url 'editPost' pk=post.pk %}" class="button is-dark">Edit</a>
+                <a href="{% url 'deletePost' pk=post.pk %}" class="button is-danger is-outlined">Delete</a>
+            </div>
+         </article>
+    </div>
+{% endblock %}

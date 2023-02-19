@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static './css/bulma.min.css' %}">
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{% url 'homePage' %}">
+                  <h1 class="title has-text-black">New Posts</h1>
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                  <span aria-hidden="true"></span>
+                </a>
+              </div>
+
+              <div id="navbarBasicExample" class="navbar-menu has-background-light">
+                <div class="navbar-start">
+
+                </div>
+
+                <div class="navbar-end">
+                  <div class="navbar-item">
+                    <div class="buttons">
+                        <a href="{% url 'allPost' %}" class="button is-dark is-hovered">
+                            All posts
+                        </a>
+                        <a href="{% url 'addPost' %}" class="button is-dark is-outlined">
+                            Add Post
+                        </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+<!--    <footer style="padding: 40px 0; color: 000;">-->
+<!--        <div style="margin: 5px 0; padding: 5px 0;">-->
+<!--            <p style="text-align: center;">&copy; 2023. inst: _arslan__a</p>-->
+<!--        </div>-->
+<!--    </footer> -->
+
+    <script src="{% static './js/script.js' %}"></script>
+</body>
+</html>

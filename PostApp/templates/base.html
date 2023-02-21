@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static './css/bulma.min.css' %}">
-    <link rel="stylesheet" href="{% static './css/style.css' %}">
+    <link rel="shortcut icon" type="image/png" href="https://i1.sndcdn.com/avatars-FF5Dt5x2WL00MLzf-a7LIHA-t240x240.jpg"/>
 </head>
 <body>
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
@@ -32,12 +32,26 @@
                 <div class="navbar-end">
                   <div class="navbar-item">
                     <div class="buttons">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'logoutUser' %}" class="button is-dark is-hovered">
+                            Logout
+                        </a>
+                        {% else %}
+                        <a href="{% url 'signUpPage' %}" class="button is-dark is-hovered">
+                            Sign Up
+                        </a>
+                        <a href="{% url 'loginPage' %}" class="button is-dark is-hovered">
+                            Login
+                        </a>
+                        {% endif %}
                         <a href="{% url 'allPost' %}" class="button is-dark is-hovered">
                             All posts
                         </a>
+                        {% if user.is_superuser %}
                         <a href="{% url 'addPost' %}" class="button is-dark is-outlined">
                             Add Post
                         </a>
+                        {% endif %}
                     </div>
                   </div>
                 </div>

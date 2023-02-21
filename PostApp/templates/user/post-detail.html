@@ -3,6 +3,7 @@
 {% block title%}{{ post.title }}{% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <div class="container">
         <article class="message is-dark">
             <div class="mt-5 message-body">
@@ -16,9 +17,17 @@
                 <h2>None</h2>
                 {% endif %}
                 <p class="mb-3">{{ post.content }}</p>
+                {% if user.is_superuser %}
                 <a href="{% url 'editPost' pk=post.pk %}" class="button is-dark">Edit</a>
                 <a href="{% url 'deletePost' pk=post.pk %}" class="button is-danger is-outlined">Delete</a>
+                {% endif %}
             </div>
          </article>
     </div>
+{%else %}
+<div class="container has-background-dark pt-5 pb-5 mt-5">
+    <p style="color: white">Для чтения <a href="#" style="text-decoration-color: red;">войдите</a> в систему. Если у вас нет аккаунта пройдите <a href="#" class="link">регистрацию</a>.</p>
+</div>
+{% endif %}
+
 {% endblock %}
